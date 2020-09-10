@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Name: {{name}}</p>
+      <p>Age: {{age}}</p>
+      <p>Age x 3: {{multipliedAge()}}</p>
+      <p>Random Float: {{randomFloat()}}</p>
+      <div>
+        <img v-bind:src="imageLink" alt="" />
+      </div>
+      <div>
+        <input type="text" v-bind:placeholder="name" />
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          name: "John",
+          age: 45,
+          imageLink: "../images/person-1.jpg",
+        },
+        methods: {
+          multipliedAge: function () {
+            return this.age * 3;
+          },
+          randomFloat: function () {
+            return Math.random();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

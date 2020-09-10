@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- stop the function from firing -->
+      <p v-on:mousemove="updateCoordinates(2)">
+        Coordinates: {{x}} / {{y}} <span v-on:mousemove="dummy">Dead Spot</span>
+      </p>
+      <!-- stop the function from firing (different syntax)-->
+      <p v-on:mousemove="updateCoordinates(2)">
+        Coordinates: {{x}} / {{y}} <span v-on:mousemove.stop="">Dead Spot</span>
+      </p>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          counter: 0,
+          x: 0,
+          y: 0,
+        },
+        methods: {
+          increase: function (step) {
+            this.counter += step;
+          },
+          updateCoordinates: function (step) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+            this.counter += step;
+          },
+          dummy: function () {
+            event.stopPropagation();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
