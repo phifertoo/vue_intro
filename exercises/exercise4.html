@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+    <style scoped>
+      .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin: 10px;
+      }
+      #effect {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+      }
+      .highlight {
+        background-color: red;
+        width: 200px;
+      }
+      .shrink {
+        background-color: gray;
+        width: 50px;
+      }
+      .blue {
+        background-color: blue;
+      }
+      .dimensions {
+        width: 50px;
+        height: 50px;
+      }
+      .userClass {
+        border: 5px solid green;
+      }
+      .progressBar {
+        width: 500px;
+        height: 20px;
+        background-color: gray;
+      }
+      .progress {
+        width: 0%;
+        height: 100%;
+        background-color: blue;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="startEffect">Start Effect</button>
+      <div id="effect" :class="myClass"></div>
+      <!-- add styling by class -->
+      <div :class="[{'blue': true}, {'dimensions': true}]"></div>
+      <div>
+        <!-- if you type in userClass, the border will turn green -->
+        <!-- need v-model to bind the value of border and :class to 
+        be set to the value of border -->
+        <input type="text" v-model="border" :class="border" />
+      </div>
+      <!-- input value for for the background (ie green, red) -->
+      <div>
+        <div class="demo" :style="{backgroundColor: userBackground}"></div>
+        <input type="text" v-model="userBackground" />
+      </div>
+      <div>
+        <button @click="increaseProgress">Start Progress</button>
+        <div class="progressBar">
+          <div class="progress" :style="{width: progressPercent}"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          myClass: "",
+          border: "",
+          userBackground: "",
+          progressWidth: 0,
+          progressPercent: 0,
+        },
+        methods: {
+          startEffect: function () {
+            const vs = this;
+            setInterval(function () {
+              if (vs.myClass === "" || vs.myClass === "shrink") {
+                vs.myClass = "highlight";
+              } else {
+                vs.myClass = "shrink";
+              }
+            }, 2000);
+          },
+          increaseProgress: function () {
+            const vs = this;
+            setInterval(function () {
+              if (vs.progressWidth < 100) {
+                vs.progressWidth += 25;
+                vs.progressPercent = vs.progressWidth + "%";
+              }
+            }, 2000);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

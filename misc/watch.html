@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <button v-on:click="count2++"></button>
+        <p>Count: {{count}}</p>
+        <p>Count2: {{count2}}</p>
+        <!-- result() will always fire when count2++ fires because it is a called function -->
+        <p>{{result()}}</p>
+        <!-- output will only fire if this.count changes -->
+        <p>{{output}}</p>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          count: 0,
+          count2: 0,
+        },
+        methods: {
+          result: function () {
+            console.log("methods");
+            return this.count;
+          },
+        },
+        watch: {
+          count2: function () {
+            // only the outer function has access to this, we need to store the value of "this" in a variable
+            // so that the function inside of the setTimeout can access "this"
+            const vm = this;
+            setTimeout(function () {
+              vm.count2 = 5;
+            }, 2000);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

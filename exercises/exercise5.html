@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- exercise 1 -->
+      <div>
+        <button @click="show=!show">Toggle</button>
+        <p v-if="show">Using v-if</p>
+        <p v-if="show">Using v-show</p>
+      </div>
+      <!-- exercise 2 -->
+      <ul>
+        <li v-for="(ingredient, index) in ingredients">
+          {{ingredient}} {{index}}
+        </li>
+      </ul>
+      <!-- exercise 3 -->
+      <ul>
+        <li v-for="(item, key, index) in bookObject">
+          {{key}} : {{item}} : {{index}}
+        </li>
+      </ul>
+      <!-- exercise 4 -->
+      <ul>
+        <li v-for="item in nestObject" :key="item">
+          <div v-if="typeof item === 'string'">{{item}}</div>
+          <div v-else v-for="number in item" :key="number">{{number}}</div>
+        </li>
+      </ul>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          show: true,
+          ingredients: ["meat", "fruit", "cookies"],
+          bookObject: {
+            title: "Lord of the Rings",
+            author: "J.R.R Toliens",
+            books: "3",
+          },
+          nestObject: { name: "TESTOBJECT", data: [1.67, 1.33, 0.98, 2.21] },
+        },
+      });
+    </script>
+  </body>
+</html>

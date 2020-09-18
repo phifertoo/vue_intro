@@ -8,17 +8,24 @@
   </head>
   <body>
     <div id="app">
-      <!-- You can add .enter to specify the keyup event listener -->
-      <input type='text' v-on:keyup.enter="alertMe"></p>
+      <p>Current Value: {{ value }}</p>
+      <button @click="value +=5">Add 5</button>
+      <button @click="value+=1">Add 1</button>
+      <p>{{ result }}</p>
     </div>
     <script>
       new Vue({
         el: "#app",
         data: {
+          value: 0,
         },
-        methods: {
-          alertMe: function () {
-            alert("Alert");
+        computed: {
+          result: function () {
+            if (this.value >= 37) {
+              return "finished";
+            } else {
+              return "not there yet";
+            }
           },
         },
       });

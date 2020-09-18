@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+    <style scoped>
+      .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin: 10px;
+      }
+      .red {
+        background-color: red;
+      }
+      .green {
+        background-color: green;
+      }
+      .blue {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- click toggles:
+            red = true/false
+            blue = true/false
+         -->
+      <!-- divClasses listens for changes to attachRed  -->
+      <div
+        class="demo"
+        @click="attachRed = !attachRed"
+        :class="{red: attachRed, blue: !attachRed}"
+      ></div>
+      <div class="demo" :class="color"></div>
+      <div class="demo"></div>
+      <hr />
+      <!-- type in the css class -->
+      <!-- sets the color = input value -->
+      <input type="text" v-model="color" />
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          attachRed: true,
+          color: "green",
+        },
+        computed: {
+          divClasses: function () {
+            return {
+              // red: true/false
+              red: this.attachRed,
+              //   blue: true/false
+              blue: !this.attachRed,
+            };
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

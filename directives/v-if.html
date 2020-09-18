@@ -8,18 +8,16 @@
   </head>
   <body>
     <div id="app">
-      <!-- You can add .enter to specify the keyup event listener -->
-      <input type='text' v-on:keyup.enter="alertMe"></p>
+      <p v-if="show">If Statement</p>
+      <p v-else-if="!show">Else if statement</p>
+      <p v-else>Else Statement</p>
+      <button @click="show=!show">Switch</button>
     </div>
     <script>
       new Vue({
         el: "#app",
         data: {
-        },
-        methods: {
-          alertMe: function () {
-            alert("Alert");
-          },
+          show: true,
         },
       });
     </script>

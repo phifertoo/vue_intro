@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <!-- a for loop that creates a variable ingredient -->
+        <li v-for="(ingredient, index) in ingredients">
+          {{ingredient}} {{index}}
+        </li>
+      </ul>
+      <div v-for="(ingredient, index) in ingredients">
+        <h1>{{ingredient}}</h1>
+        <p>{{index}}</p>
+      </div>
+      <hr />
+      <ul>
+        <li v-for="person in persons">
+          <div v-for="(value, key, index) in person">
+            {{key}}: {{value}} : {{index}}
+          </div>
+        </li>
+      </ul>
+      <hr />
+      <span v-for="number in 10"> {{ number }}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          ingredients: ["meat", "fruit", "cookies"],
+          persons: [
+            { name: "Max", age: 27, color: "red" },
+            { name: "Anna", age: "unknown", color: "blue" },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>
