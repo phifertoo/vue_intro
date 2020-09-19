@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <my-component></my-component>
+      <my-component></my-component>
+    </div>
+    <script>
+      const dataObject = {
+        status: "Critical",
+      };
+      Vue.component("my-component", {
+        data: function () {
+          return dataObject;
+        },
+        methods: {
+          changeStatus: function () {
+            this.status = "Normal";
+          },
+        },
+        template:
+          "<p>Server Status: {{status}} <button @click='changeStatus'>Change</button> </p> ",
+      });
+
+      new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
+</html>

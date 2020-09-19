@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app1">
+      <h1>{{title}}</h1>
+      <button @click="show">Show Paragraph</button>
+      <p v-if="showParagraph">v-if shown</p>
+    </div>
+    <div id="app2">
+      <h1>{{title}}</h1>
+    </div>
+    <script>
+      const vm1 = new Vue({
+        el: "#app1",
+        data: {
+          title: "The first VueJS Instance",
+          showParagraph: false,
+        },
+        methods: {
+          show: function () {
+            this.showParagraph = true;
+            this.updateTitle("The VueJS Instance is updated");
+          },
+          updateTitle: function () {
+            this.title = title;
+          },
+        },
+        computed: {
+          lowercaseTitle: function () {
+            return this.title.toLowerCase();
+          },
+        },
+        watch: {
+          title: function (value) {
+            alert("Titlechanged, new value: " + value);
+          },
+        },
+      });
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          title: "The second Vuejs instance",
+        },
+      });
+    </script>
+  </body>
+</html>

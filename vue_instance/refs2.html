@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app1">
+      <h1 ref="myTitle">Title</h1>
+      <h1 ref="myTitle2">{{title}}</h1>
+      <button @click="show">Change Title</button>
+    </div>
+    <script>
+      const vm1 = new Vue({
+        el: "#app1",
+        data: {
+          title: "Title from Data",
+        },
+        methods: {
+          show: function () {
+            this.$refs.myTitle.innerText = "New Title";
+            this.$refs.myTitle2.innerText = "New Title";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
